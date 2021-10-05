@@ -22,4 +22,15 @@ public class p1flap : MonoBehaviour
             rb.AddForce(upforce);
         }
     }
+
+    public void activatePower() {
+        
+    }
+ private void OnTriggerEnter2D(Collider2D other){
+    if (other.gameObject.CompareTag("homing egg")){
+        Debug.Log("I got da homing egg!!!");
+        Destroy(other.gameObject);
+    }
+}
+
 }
