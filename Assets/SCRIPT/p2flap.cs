@@ -9,7 +9,7 @@ public class p2flap : MonoBehaviour
     private Vector2 upforce;
     
     // Start is called before the first frame update
- void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -17,9 +17,12 @@ public class p2flap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow)){
+        if (Input.GetKeyDown(KeyCode.UpArrow) && Time.timeScale == 1){
             rb.velocity = Vector2.zero;
             rb.AddForce(upforce); 
         }
     }
+
+    
+    
 }
