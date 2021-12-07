@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI countdownText;
     [SerializeField]
     private int countdownTime = 3;
+    [SerializeField]
+    private GameObject[] P1lifeIcons;
+    [SerializeField]
+    private GameObject[] P2lifeIcons;
+    
 
     public static GameManager instance;
     private void Awake() {
@@ -35,6 +40,22 @@ public class GameManager : MonoBehaviour
         StartCoroutine(countdown());
     }
 
+    public void PlayerHit(string Player) {
+        if (Player == "Player 1") {
+            P1Life--;
+        } else {
+            P2Life--;
+        }
+    }
+
+    public void PlayerHit(string Player, int amout) {
+        if (Player == "Player 1") {
+            P1Life-= amout;
+        } else {
+            P2Life-=amout;
+        }
+    }
+
     IEnumerator countdown() {
         int countdownTimer = countdownTime;
         while (countdownTimer > 0) {
@@ -50,6 +71,27 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (P1Life <= 0) {
+            death("Player 1");
+        }
+        if (P2Life <= 0) {
+            death("Player 2");
+        }
+        for (int i = P1lifeIcons.Length-1; i >= 0 ; i--) {
+            if (i < P1Life) {
+                P1lifeIcons[i].SetActive(true);
+            } else {
+                P1lifeIcons[i].SetActive(false);
+            }
+        }
+        for (int i = P2lifeIcons.Length-1; i >= 0; i--) {
+            if (i < P2Life) {
+                P2lifeIcons[i].SetActive(true);
+            } else {
+                P2lifeIcons[i].SetActive(false);
+            }
+        }
     }
+
+
 }

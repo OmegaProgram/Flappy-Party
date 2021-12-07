@@ -28,7 +28,9 @@ public class Fireball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.transform.tag == "Player") {
-            GameManager.instance.death(other.transform.name);
+            // set collider to trigger
+            GetComponent<Collider2D>().isTrigger = true;
+            GameManager.instance.PlayerHit(other.transform.name);
         } else if (other.transform.tag == "bullet") {
             // create 2 clone of itself and rotate them 25 degrees up and down, make them smaller and move slower
             GameObject clone1 = Instantiate(gameObject, transform.position, Quaternion.Euler(0, 0, 35));
@@ -39,6 +41,9 @@ public class Fireball : MonoBehaviour
             clone2.GetComponentInChildren<TrailRenderer>().startWidth = 0.8f * clone2.GetComponentInChildren<TrailRenderer>().startWidth;
             clone1.GetComponent<Fireball>().speed *= 1.2f;
             clone2.GetComponent<Fireball>().speed *= 1.2f;
+            //get rid of constraints for position in rigidbody
+            clone1.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            clone2.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             // destroy the original object
             Destroy(gameObject);
         }

@@ -55,7 +55,9 @@ public class Bat : MonoBehaviour
             GetComponent<BoxCollider2D>().isTrigger = true;
             Destroy(collision.gameObject);
         } else if (collision.gameObject.tag == "Player") {
-            GameManager.instance.death(collision.transform.name);
+            GameManager.instance.PlayerHit(collision.transform.name);
+            // set collider to trigger
+            GetComponent<Collider2D>().isTrigger = true;
         }
     }
 }
