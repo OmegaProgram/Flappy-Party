@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public int P1Life = 3;
     public int P2Life = 3;
+    public int P1Powerup = -1;
+    public int P2Powerup = -1;
     [SerializeField]
     private TextMeshProUGUI countdownText;
     [SerializeField]
@@ -56,6 +58,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void usePowerUp(GameObject Player) {
+        if (Player.name == "Player 1") {
+            //if P1Powerup is not -1, instantiate the powerup with the p1Powerup from array
+            if (P1Powerup != -1) {
+                Instantiate(PowerUpManager.instance.powerUpPrefabs[P1Powerup], Player.transform.position + new Vector3(1f, 0), Quaternion.identity);
+            }
+            P1Powerup = -1;
+        } else {
+            P2Powerup = -1;
+            //repeat for P2
+            if (P2Powerup != -1) {
+                Instantiate(PowerUpManager.instance.powerUpPrefabs[P2Powerup], Player.transform.position + new Vector3(1f, 0), Quaternion.identity);
+            }
+        }
+    }
+
     IEnumerator countdown() {
         int countdownTimer = countdownTime;
         while (countdownTimer > 0) {
@@ -90,6 +108,14 @@ public class GameManager : MonoBehaviour
             } else {
                 P2lifeIcons[i].SetActive(false);
             }
+        }
+    }
+
+    public void setPowerUp(string player, int powerup) {
+        if (player == "Player 1") {
+            P1Powerup = powerup;
+        } else {
+            P2Powerup = powerup;
         }
     }
 
