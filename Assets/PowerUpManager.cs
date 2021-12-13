@@ -17,10 +17,13 @@ public class PowerUpManager : MonoBehaviour
         }
     }
 
-    public GameObject[] powerUps;
-    public GameObject[] powerUpPrefabs;
+    public PowerUpObject[] powerUpObjects;
     private float timer;
     private float spawnDelay = 5f;
+    [SerializeField]
+    private float minY = -3f;
+    [SerializeField]
+    private float maxY = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +37,9 @@ public class PowerUpManager : MonoBehaviour
         if (timer > spawnDelay)
         {
             timer = 0;
-            int randomIndex = Random.Range(0, powerUps.Length);
-            GameObject powerUp = Instantiate(powerUps[randomIndex], new Vector3(20, Random.Range(-3, 5), 0), Quaternion.identity);
-            powerUp.GetComponent<PowerUp>().id = randomIndex;
+            int randomIndex = Random.Range(0, powerUpObjects.Length);
+            GameObject powerUp = Instantiate(powerUpObjects[randomIndex].ediblePowerUp, new Vector3(20, Random.Range(minY, maxY), 0), Quaternion.identity);
+            powerUp.GetComponent<PowerUp>().powerUpObject = powerUpObjects[randomIndex];
         }
     }
 

@@ -1101,25 +1101,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1028936181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f1eb3ecb11e61c4dbd543a140066410, type: 3}
+  m_Script: {fileID: 11500000, guid: 2702204d7e648bc45acc3ca2418e3267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P1Life: 4
-  P2Life: 4
+  P1Life: 3
+  P2Life: 3
   P1Powerup: -1
   P2Powerup: -1
   countdownText: {fileID: 1639546493}
   countdownTime: 3
-  P1lifeIcons:
-  - {fileID: 752404893}
-  - {fileID: 212968536}
-  - {fileID: 562808319}
-  - {fileID: 239475331}
-  P2lifeIcons:
-  - {fileID: 1922928289}
-  - {fileID: 31204003}
-  - {fileID: 332486532}
-  - {fileID: 463925501}
+  P1lifeIcons: []
+  P2lifeIcons: []
 --- !u!4 &1028936183
 Transform:
   m_ObjectHideFlags: 0

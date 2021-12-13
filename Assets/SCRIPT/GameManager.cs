@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public int P1Life = 3;
     public int P2Life = 3;
-    public int P1Powerup = -1;
-    public int P2Powerup = -1;
+    public PowerUpObject P1Powerup;
+    public PowerUpObject P2Powerup;
     [SerializeField]
     private TextMeshProUGUI countdownText;
     [SerializeField]
@@ -58,19 +58,44 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void addHealth(string Player, int amout) {
+        // if Player is Player 1 and the final health is less than 4, add health. If the health is over 4, set it as 4. 
+        if (Player == "Player 1") {
+            if (P1Life + amout <= 4) {
+                P1Life += amout;
+            } else if (P1Life + amout > 4){
+                P1Life = 4;
+            }
+        } else {
+            if (P2Life + amout < 4) {
+                P2Life += amout;
+            } else if (P2Life + amout > 4) {
+                P2Life = 4;
+            }
+        }
+    }
+
     public void usePowerUp(GameObject Player) {
         if (Player.name == "Player 1") {
             //if P1Powerup is not -1, instantiate the powerup with the p1Powerup from array
-            if (P1Powerup != -1) {
-                Instantiate(PowerUpManager.instance.powerUpPrefabs[P1Powerup], Player.transform.position + new Vector3(1f, 0), Quaternion.identity);
+            if (P1Powerup != null) {
+                P1Powerup.usePowerUp(Player);
             }
-            P1Powerup = -1;
+            P1Powerup = null;
         } else {
-            P2Powerup = -1;
             //repeat for P2
-            if (P2Powerup != -1) {
-                Instantiate(PowerUpManager.instance.powerUpPrefabs[P2Powerup], Player.transform.position + new Vector3(1f, 0), Quaternion.identity);
+            if (P2Powerup != null) {
+                P2Powerup.usePowerUp(Player);
             }
+            
+            P2Powerup = null;
+        }
+    }
+    public void setPowerUp(string player, PowerUpObject powerup) {
+        if (player == "Player 1") {
+            P1Powerup = powerup;
+        } else {
+            P2Powerup = powerup;
         }
     }
 
@@ -111,13 +136,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void setPowerUp(string player, int powerup) {
-        if (player == "Player 1") {
-            P1Powerup = powerup;
-        } else {
-            P2Powerup = powerup;
-        }
-    }
 
 
 }

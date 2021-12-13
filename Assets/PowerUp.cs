@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     public string powerUpName;
-    public int id = -1;
+    public PowerUpObject powerUpObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +15,7 @@ public class PowerUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (id == -1)
+        if (powerUpObject == null)
         { 
             Destroy(gameObject);
         }
@@ -28,12 +28,20 @@ public class PowerUp : MonoBehaviour
         transform.Translate(Vector3.left * Time.deltaTime * 3);
     }
 
+    
+    public virtual void activateEffect(GameObject player) {
+        //null
+    }
+
     //on collision 2d with player, set that player's powerup in GameManager to this powerup's name
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameManager.instance.setPowerUp(collision.gameObject.name, id);
+            activateEffect(collision.gameObject);
+            if (powerUpObject.spawnable) {
+                GameManager.instance.setPowerUp(collision.gameObject.name, powerUpObject);
+            }
             Destroy(gameObject);
         }
     }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4c217a9e782f84cb502a0c38f69b59, type: 3}
+  m_Name: Shell Shocker
+  m_EditorClassIdentifier: 
+  powerUpName: Shell Shocker
+  powerUpIcon: {fileID: 1429927367122127863, guid: c85657793f26cb342b98f553639a67df, type: 3}
+  powerUpPrefab: {fileID: 3150322764280221156, guid: 49eed117a2d7d1c458075466d7534661, type: 3}
+  ediblePowerUp: {fileID: 2927728896876054229, guid: 639078bc0cea5ce4b83b7d8fb9869365, type: 3}
+  spawnable: 1
