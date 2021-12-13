@@ -38,10 +38,13 @@
   <ItemGroup>
      <Compile Include="Assets\SCRIPT\p1flap.cs" />
      <Compile Include="Assets\SCRIPT\Controller.cs" />
-     <Compile Include="Assets\PillarScroll.cs" />
+     <Compile Include="Assets\SCRIPT\PillarScroll.cs" />
      <Compile Include="Assets\SCRIPT\p2flap.cs" />
      <Compile Include="Assets\SCRIPT\SCREEN MOVER RIGHT.cs" />
-     <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\SCRIPT\GameManager.cs" />
+     <Compile Include="Assets\PowerUp.cs" />
+     <Compile Include="Assets\ShellShocker.cs" />
+     <Compile Include="Assets\Shell.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
