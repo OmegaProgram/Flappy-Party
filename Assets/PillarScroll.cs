@@ -30,9 +30,9 @@ public class PillarScroll : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.transform.tag == "Player") {
-            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(0).gameObject.SetActive(true);
-            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = other.transform.name + " Lost!";
-            Time.timeScale = 0;
+            GameManager.instance.PlayerHit(other.transform.name);
+            // set collider to trigger
+            GetComponent<Collider2D>().isTrigger = true;
         }
     }
 }

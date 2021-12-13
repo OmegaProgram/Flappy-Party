@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PowerUpManager : MonoBehaviour
+{
+    public static PowerUpManager instance;
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
+    public GameObject[] powerUps;
+    public GameObject[] powerUpPrefabs;
+    private float timer;
+    private float spawnDelay = 5f;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    private void Update() {
+        //for every spawnDelay, spawn a random powerup from powerUps at x=20, y= random from -5 to 5. 
+        timer += Time.deltaTime;
+        if (timer > spawnDelay)
+        {
+            timer = 0;
+            int randomIndex = Random.Range(0, powerUps.Length);
+            GameObject powerUp = Instantiate(powerUps[randomIndex], new Vector3(20, Random.Range(-3, 5), 0), Quaternion.identity);
+            powerUp.GetComponent<PowerUp>().id = randomIndex;
+        }
+    }
+
+}
