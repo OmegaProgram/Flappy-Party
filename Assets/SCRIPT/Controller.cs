@@ -9,6 +9,7 @@ public class Controller : MonoBehaviour
     [SerializeField]
     private float timeInterval = 4f;
     private float timer = 0;
+
     // Start is called before the first frame update
     void Start() {
         
