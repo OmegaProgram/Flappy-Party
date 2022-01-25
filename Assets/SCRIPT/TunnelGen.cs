@@ -32,14 +32,23 @@ public class TunnelGen : MonoBehaviour
     private float height = -4f;
     private bool tendsUp = true;
 
+    private GameObject player1;
+    private GameObject player2;
+
+    private float targetY = 1500;
+
     // Start is called before the first frame update
     void Start() {
-        
+        player1 = GameObject.FindGameObjectsWithTag("P1")[0];
+        player2 = GameObject.FindGameObjectsWithTag("P2")[0];
     }
 
     // Update is called once per frame
     void Update() {
         float random;
+        if (targetY == 1500) {
+            targetY = Mathf.Abs(player1.transform.position.y + player2.transform.position.y) / 2;
+        }
         if (timer <= 0) {
             random = Random.Range(0f, 100f);
 
@@ -66,7 +75,7 @@ public class TunnelGen : MonoBehaviour
 
             if (random <= chanceOfWorm) {
                 spawnCaveWall();
-                spawnWorm();
+                spawnWorm(targetY);
             } else {
                 spawnCaveWall();
             }
@@ -84,7 +93,12 @@ public class TunnelGen : MonoBehaviour
         Instantiate(bug, new Vector3(20, height + 2.555f), Quaternion.identity);
     }
 
-    void spawnWorm() {
-        Instantiate(worm, new Vector3(20, Random.Range(0f, 100f) > 50? height * -2 : height*2), Quaternion.identity);
+    void spawnWorm(float currentY) {
+        if (currentY < 0) {
+            Instantiate(worm, new Vector3(20, Random.Range(-20f, -100f) > 50? height * -2 : height*2), Quaternion.identity);
+        } else {
+            Instantiate(worm, new Vector3(20, Random.Range(20f, 100f) > 50? height * -2 : height*2), Quaternion.identity);
+        }
+
     }
 }
